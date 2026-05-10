@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineGo - Streaming</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CineGo<span>▶</span></div>
+    </header>
+
+    <main>
+        <section id="bienvenida">
+            <h1>Bienvenido a CineGo</h1>
+            <p>Tu Cine, a donde vayas.</p>
+        </section>
+
+        <section id="planes">
+            <div class="card">
+                <h3>Básico</h3>
+                <p class="precio">$99 MXN/mes</p>
+                <button onclick="seleccionarPlan('Básico')">Suscribirse</button>
+            </div>
+            <div class="card">
+                <h3>Estándar</h3>
+                <p class="precio">$149 MXN/mes</p>
+                <button onclick="seleccionarPlan('Estándar')">Suscribirse</button>
+            </div>
+            <div class="card destacada">
+                <h3>Premium</h3>
+                <p class="precio">$199 MXN/mes</p>
+                <button onclick="seleccionarPlan('Premium')">Suscribirse</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
