@@ -39,3 +39,17 @@
     <script src="script.js"></script>
 </body>
 </html>
+<section id="area-pago" style="display:none; background:#111; padding:20px; border-radius:10px; margin-top:20px;">
+    <h2>Finalizar Suscripción</h2>
+    <p>Estás contratando el Plan <span id="plan-seleccionado"></span></p>
+    
+    <form id="form-pago">
+        <input type="text" placeholder="Nombre en la tarjeta" required style="width:90%; padding:10px; margin:5px;">
+        <input type="text" placeholder="0000 0000 0000 0000" required style="width:90%; padding:10px; margin:5px;">
+        <div style="display:flex; justify-content:center; gap:10px;">
+            <input type="text" placeholder="MM/AA" style="width:40%; padding:10px;">
+            <input type="text" placeholder="CVV" style="width:40%; padding:10px;">
+        </div>
+        <button type="submit" style="margin-top:15px; width:95%;">Confirmar Pago Seguro</button>
+    </form>
+</section>
