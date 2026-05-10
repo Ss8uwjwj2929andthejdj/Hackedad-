@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CineGo - Streaming Profesional</title>
     <style>
-        /* Diseño Integrado CineGo */
         body {
             background-color: #050505;
             color: #ffffff;
@@ -20,6 +19,21 @@
         .logo { font-size: 2.8rem; font-weight: bold; }
         .logo span { color: #FFD700; }
         
+        /* Contenedor del Reproductor de Muestra */
+        .preview-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 10px;
+            background: #000;
+        }
+        video {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
         #planes {
             display: flex;
             flex-wrap: wrap;
@@ -50,7 +64,6 @@
             width: 100%;
         }
 
-        /* Sección de Pago Oculta */
         #area-pago {
             display: none;
             max-width: 400px;
@@ -79,6 +92,16 @@
     </header>
 
     <main>
+        <!-- SECCIÓN DE VISTA PREVIA -->
+        <section class="preview-container">
+            <h3 style="color: #FFD700;">Prueba nuestra calidad HD</h3>
+            <video controls poster="https://via.placeholder.com/800x450/000000/FFD700?text=CineGo+Preview">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Tu navegador no soporta el reproductor de CineGo.
+            </video>
+            <p style="font-size: 0.9rem; color: #888; margin-top: 10px;">Suscríbete ahora para ver el catálogo completo.</p>
+        </section>
+
         <section id="planes">
             <div class="card">
                 <h3>Básico</h3>
@@ -101,7 +124,6 @@
             </div>
         </section>
 
-        <!-- FORMULARIO DE PAGO INTEGRADO -->
         <section id="area-pago">
             <h2 style="color:#FFD700;">Finalizar Suscripción</h2>
             <p>Plan seleccionado: <strong id="plan-nombre"></strong></p>
@@ -122,20 +144,16 @@
 
     <script>
         function iniciarPago(nombre, precio) {
-            // Mostrar formulario y llenar datos
             const seccionPago = document.getElementById('area-pago');
             seccionPago.style.display = 'block';
             document.getElementById('plan-nombre').innerText = nombre;
             document.getElementById('plan-costo').innerText = '$' + precio + ' MXN';
-            
-            // Scroll suave hacia abajo
             seccionPago.scrollIntoView({ behavior: 'smooth' });
         }
 
         function confirmarPago(event) {
             event.preventDefault();
             alert("¡Pago procesado con éxito! Bienvenido a la familia CineGo.");
-            // Aquí se redirigiría al catálogo real
             window.location.reload(); 
         }
     </script>
