@@ -1,14 +1,143 @@
-<section id="area-pago" style="display:none; background:#111; padding:20px; border-radius:10px; margin-top:20px;">
-    <h2>Finalizar Suscripción</h2>
-    <p>Estás contratando el Plan <span id="plan-seleccionado"></span></p>
-    
-    <form id="form-pago">
-        <input type="text" placeholder="Nombre en la tarjeta" required style="width:90%; padding:10px; margin:5px;">
-        <input type="text" placeholder="0000 0000 0000 0000" required style="width:90%; padding:10px; margin:5px;">
-        <div style="display:flex; justify-content:center; gap:10px;">
-            <input type="text" placeholder="MM/AA" style="width:40%; padding:10px;">
-            <input type="text" placeholder="CVV" style="width:40%; padding:10px;">
-        </div>
-        <button type="submit" style="margin-top:15px; width:95%;">Confirmar Pago Seguro</button>
-    </form>
-</section>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineGo - Streaming Profesional</title>
+    <style>
+        /* Diseño Integrado CineGo */
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        header {
+            padding: 30px;
+            background: linear-gradient(to bottom, #000, transparent);
+        }
+        .logo { font-size: 2.8rem; font-weight: bold; }
+        .logo span { color: #FFD700; }
+        
+        #planes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 25px;
+            border-radius: 15px;
+            width: 260px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: #FFD700; transform: translateY(-5px); }
+        .destacada { border: 2px solid #FFD700; position: relative; }
+        .precio { font-size: 1.8rem; color: #FFD700; font-weight: bold; margin: 15px 0; }
+        
+        button {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Sección de Pago Oculta */
+        #area-pago {
+            display: none;
+            max-width: 400px;
+            margin: 40px auto;
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #FFD700;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">CineGo<span>▶</span></div>
+        <p>Tu entretenimiento, tu cine, a donde vayas.</p>
+    </header>
+
+    <main>
+        <section id="planes">
+            <div class="card">
+                <h3>Básico</h3>
+                <p>1 Dispositivo</p>
+                <p class="precio">$99 MXN/mes</p>
+                <button onclick="iniciarPago('Básico', 99)">Suscribirse</button>
+            </div>
+            <div class="card destacada">
+                <div style="position:absolute; top:-15px; left:25%; background:#FFD700; color:#000; padding:2px 20px; border-radius:10px; font-size:0.8rem;">RECOMENDADO</div>
+                <h3>Premium</h3>
+                <p>4 Dispositivos + 4K</p>
+                <p class="precio">$199 MXN/mes</p>
+                <button onclick="iniciarPago('Premium', 199)">Suscribirse</button>
+            </div>
+            <div class="card">
+                <h3>Estándar</h3>
+                <p>2 Dispositivos + HD</p>
+                <p class="precio">$149 MXN/mes</p>
+                <button onclick="iniciarPago('Estándar', 149)">Suscribirse</button>
+            </div>
+        </section>
+
+        <!-- FORMULARIO DE PAGO INTEGRADO -->
+        <section id="area-pago">
+            <h2 style="color:#FFD700;">Finalizar Suscripción</h2>
+            <p>Plan seleccionado: <strong id="plan-nombre"></strong></p>
+            <p>Total a pagar: <strong id="plan-costo"></strong></p>
+            
+            <form onsubmit="confirmarPago(event)">
+                <input type="text" placeholder="Nombre del Titular" required>
+                <input type="text" placeholder="Número de Tarjeta (16 dígitos)" maxlength="16" required>
+                <div style="display:flex; justify-content:center; gap:10px;">
+                    <input type="text" placeholder="MM/AA" style="width:40%;" maxlength="5" required>
+                    <input type="password" placeholder="CVV" style="width:40%;" maxlength="3" required>
+                </div>
+                <input type="email" placeholder="Correo para tu comprobante" required>
+                <button type="submit" style="background:#28a745; color:#fff; margin-top:20px;">Confirmar Pago Seguro</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        function iniciarPago(nombre, precio) {
+            // Mostrar formulario y llenar datos
+            const seccionPago = document.getElementById('area-pago');
+            seccionPago.style.display = 'block';
+            document.getElementById('plan-nombre').innerText = nombre;
+            document.getElementById('plan-costo').innerText = '$' + precio + ' MXN';
+            
+            // Scroll suave hacia abajo
+            seccionPago.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function confirmarPago(event) {
+            event.preventDefault();
+            alert("¡Pago procesado con éxito! Bienvenido a la familia CineGo.");
+            // Aquí se redirigiría al catálogo real
+            window.location.reload(); 
+        }
+    </script>
+</body>
+</html>
